@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
+/* Espresso & Cream: light warm surfaces, espresso/terracotta/caramel for type and accents.
+   Muted text is a deepened latte so body copy stays readable (WCAG AA) on light backgrounds. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcf9f4;
+  --foreground: #1a120d;
+  --muted: #6b5442;
+  --card: #f3e9dc;
+  --border: #eadfd0;
+  --accent: #c26a4a;
+  --accent-light: #d9a066;
+}
+
+@theme {
+  --color-brand-50: #fbf6ef;
+  --color-brand-100: #f3e9dc;
+  --color-brand-200: #e8d6bf;
+  --color-brand-300: #d9bfa0;
+  --color-brand-400: #d9a066;
+  --color-brand-500: #c26a4a;
+  --color-brand-600: #a3553a;
+  --color-brand-700: #7a4530;
+  --color-brand-800: #3d2b20;
+  --color-brand-900: #2a1d16;
+  --color-brand-950: #1a120d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-blob: blob 14s ease-in-out infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+  --animate-gradient: gradient 6s ease infinite;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -50px) scale(1.1); }
+    66% { transform: translate(-30px, 30px) scale(0.92); }
+  }
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 10px 30px -8px rgb(122 69 48 / 0.45); }
+    50% { box-shadow: 0 14px 45px -6px rgb(217 160 102 / 0.65); }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+@layer components {
+  .text-gradient {
+    background-image: linear-gradient(90deg, #2a1d16, #7a4530, #c26a4a, #d9a066, #c26a4a, #7a4530, #2a1d16);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient 6s ease infinite;
+  }
+
+  .bg-gradient-accent {
+    background-image: linear-gradient(110deg, #2a1d16, #7a4530 45%, #c26a4a);
+    background-size: 200% auto;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal[data-from="left"] { transform: translateX(-50px); }
+.reveal[data-from="right"] { transform: translateX(50px); }
+.reveal[data-from="zoom"] { transform: scale(0.9); }
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
 }
