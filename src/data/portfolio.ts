@@ -80,10 +80,10 @@ const tools = {
 
 // Replace these with each project's real repository and deployed URL. "#" means "not available yet".
 const projectLinks = {
-  tealhub: { github: "https://github.com/DOHA6", live: "#" },
-  newsletter: { github: "https://github.com/DOHA6", live: "#" },
-  nova: { github: "https://github.com/DOHA6", live: "#" },
-  urbanflow: { github: "https://github.com/DOHA6", live: "#" },
+  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791898747/Screen_Recording_2026-07-02_224708.mp4" },
+  newsletter: { github: "https://github.com/DOHA6/newsletter.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791898805/Vite_React_-_Personal_-_Microsoft_Edge_2025-08-24_13-06-55.mp4" },
+  nova: { github: "https://github.com/m-elhamlaoui/development-platform-nova-pioneers.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791897146/Kids_Of_Space_-_Google_Chrome_2025-05-27_12-15-15.mp4" },
+  urbanflow: { github: "https://github.com/DOHA6", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791904197/SOA.mp4" },
 };
 
 const skills = {
@@ -96,7 +96,7 @@ const skills = {
 };
 
 const en: Content = {
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/resumeen.pdf",
   location: " 📍 Casablanca, Morocco",
   role: "Software Engineer — Full Stack Java Developer",
   tagline: "Java · Spring Boot · React · Microservices",
@@ -273,7 +273,7 @@ const en: Content = {
 };
 
 const fr: Content = {
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/CV.pdf",
   location: "Casablanca, Maroc",
   role: "Ingénieure Logiciel — Développeuse Full-Stack Java",
   tagline: "Java · Spring Boot · React · Microservices",
