@@ -12,6 +12,13 @@ type DemoVideoProps = {
   className?: string;
 };
 
+// Cloudinary's `ac_none` transformation serves the video with its audio track removed.
+function withoutAudio(src: string) {
+  return src.includes("res.cloudinary.com") && !src.includes("/ac_none/")
+    ? src.replace("/video/upload/", "/video/upload/ac_none/")
+    : src;
+}
+
 export default function DemoVideo({ src, muted = false, title, label, closeLabel, className = "" }: DemoVideoProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -67,7 +74,7 @@ export default function DemoVideo({ src, muted = false, title, label, closeLabel
             </div>
             <div className="aspect-video max-h-[75vh] w-full bg-black">
               <ReactPlayer
-                src={src}
+                src={muted ? withoutAudio(src) : src}
                 muted={muted}
                 playing
                 controls

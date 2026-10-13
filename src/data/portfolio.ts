@@ -23,7 +23,7 @@ export type Project = {
   stack: string[];
   github?: string;
   live?: string;
-  // Plays the demo video without sound (visitors can still unmute it from the player controls).
+  // Plays the demo video with no sound at all (for Cloudinary videos the audio track is stripped).
   muted?: boolean;
   featured?: boolean;
 };
@@ -91,7 +91,8 @@ const tools = {
 
 // `github` → Code button (opens the repo). `live` → Live button (plays the demo video in a pop-up).
 // Omit a field, or leave it as "#", to hide that button.
-const projectLinks = {  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791932416/Screen_Recording_2026-07-02_224708.mp4", muted: true },
+const projectLinks = {
+  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791932416/Screen_Recording_2026-07-02_224708.mp4", muted: true },
   newsletter: { github: "https://github.com/DOHA6/newsletter.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791898805/Vite_React_-_Personal_-_Microsoft_Edge_2025-08-24_13-06-55.mp4" },
 
   nova: { github: "https://github.com/m-elhamlaoui/development-platform-nova-pioneers.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791897146/Kids_Of_Space_-_Google_Chrome_2025-05-27_12-15-15.mp4" },
