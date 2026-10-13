@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Content, Lang } from "@/data/portfolio";
 
 type NavbarProps = {
@@ -37,12 +38,18 @@ export default function Navbar({ name, logo, lang, switchHref, resumeUrl, ui }: 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const langSwitch = (
-    <a
+    <Link
       href={switchHref}
+      scroll={false}
+      replace
       title={ui.switchLabel}
       aria-label={ui.switchLabel}
-      className="flex items-center rounded-full border border-border bg-white/80 p-1 text-xs font-bold"
+      className="flex shrink-0 items-center rounded-full border border-border bg-white/80 p-1 text-xs font-bold"
     >
       {(["en", "fr"] as const).map((l) => (
         <span
@@ -54,7 +61,7 @@ export default function Navbar({ name, logo, lang, switchHref, resumeUrl, ui }: 
           {l}
         </span>
       ))}
-    </a>
+    </Link>
   );
 
   return (
@@ -63,7 +70,7 @@ export default function Navbar({ name, logo, lang, switchHref, resumeUrl, ui }: 
         scrolled ? "bg-background/85 shadow-lg shadow-brand-100/60 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-18 max-w-6xl items-center justify-between px-6">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 sm:h-18 sm:px-6">
         <a href="#top" className="group flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
           {logo && (
             <Image
@@ -75,8 +82,10 @@ export default function Navbar({ name, logo, lang, switchHref, resumeUrl, ui }: 
               className="h-10 w-10 rounded-full transition-transform duration-500 group-hover:rotate-[360deg]"
             />
           )}
-          <span className="text-gradient">{name.split(" ")[0]}</span>
-          <span className="text-accent">.</span>
+          <span>
+            <span className="text-gradient">{name.split(" ")[0]}</span>
+            <span className="text-accent">.</span>
+          </span>
         </a>
 
         <ul className="hidden items-center gap-7 text-sm font-medium text-foreground lg:flex">
@@ -122,7 +131,7 @@ export default function Navbar({ name, logo, lang, switchHref, resumeUrl, ui }: 
           open ? "grid-rows-[1fr] border-t border-border" : "grid-rows-[0fr]"
         }`}
       >
-        <ul className="min-h-0 px-6">
+        <ul className="min-h-0 px-5 sm:px-6">
           {links.map((link) => (
             <li key={link.href}>
               <a

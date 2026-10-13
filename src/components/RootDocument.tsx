@@ -29,10 +29,10 @@ export function buildMetadata(lang: Lang): Metadata {
   };
 }
 
-export default function RootDocument({ lang, children }: { lang: Lang; children: React.ReactNode }) {
+export default function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={lang} className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col overflow-x-hidden font-sans">{children}</body>
+    <html lang="en" className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col overflow-x-clip font-sans">{children}</body>
     </html>
   );
 }

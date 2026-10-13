@@ -5,8 +5,8 @@ export type Lang = "en" | "fr";
 
 export const shared = {
   name: "Doha Negraoui",
-  email: "📧  negraouidoha@gmail.com",
-  phone: " 📞 +212 6 80 40 55 28",
+  email: "negraouidoha@gmail.com",
+  phone: "+212 6 80 40 55 28",
   github: "https://github.com/DOHA6",
   linkedin: "https://www.linkedin.com/in/dohanegraoui",
   // Put your photo in /public (e.g. /public/profile.jpg) and set this to "/profile.jpg". Leave empty to show initials.
@@ -63,7 +63,7 @@ export type Content = {
     about: { eyebrow: string; title: string };
     stats: { projects: string; technologies: string; internships: string };
     skills: { eyebrow: string; title: string };
-    projects: { eyebrow: string; title: string; others: string; code: string; live: string };
+    projects: { eyebrow: string; title: string; others: string; code: string; live: string; close: string };
     journey: { eyebrow: string; title: string; experience: string; education: string; certifications: string; activities: string };
     contact: { eyebrow: string; title: string; heading: string; body: string; email: string; cv: string };
     footer: string;
@@ -78,9 +78,10 @@ const tools = {
   urbanflow: ["Spring Boot", "React.js", "Docker", "Kubernetes", "AWS", "Terraform", "GitHub Actions", "PostgreSQL", "RabbitMQ", "Prometheus", "Grafana"],
 };
 
-// Replace these with each project's real repository and deployed URL. "#" means "not available yet".
+// `github` → Code button (opens the repo). `live` → Live button (plays the demo video in a pop-up).
+// Omit a field, or leave it as "#", to hide that button.
 const projectLinks = {
-  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791898747/Screen_Recording_2026-07-02_224708.mp4" },
+  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791926224/screen-recording-2026-07-02-224708_sw8bIZI7.mp4" },
   newsletter: { github: "https://github.com/DOHA6/newsletter.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791898805/Vite_React_-_Personal_-_Microsoft_Edge_2025-08-24_13-06-55.mp4" },
   nova: { github: "https://github.com/m-elhamlaoui/development-platform-nova-pioneers.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791897146/Kids_Of_Space_-_Google_Chrome_2025-05-27_12-15-15.mp4" },
   urbanflow: { github: "https://github.com/DOHA6", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791904197/SOA.mp4" },
@@ -97,7 +98,7 @@ const skills = {
 
 const en: Content = {
   resumeUrl: "/resumeen.pdf",
-  location: " 📍 Casablanca, Morocco",
+  location: "Casablanca, Morocco",
   role: "Software Engineer — Full Stack Java Developer",
   tagline: "Java · Spring Boot · React · Microservices",
   roles: ["Software Engineer", "Full Stack Developer", "Java & Spring Boot Developer", "React Developer"],
@@ -251,7 +252,7 @@ const en: Content = {
     about: { eyebrow: "Get to know me", title: "About Me" },
     stats: { projects: "Projects", technologies: "Technologies", internships: "Internships" },
     skills: { eyebrow: "What I work with", title: "My Skills" },
-    projects: { eyebrow: "Things I've built", title: "My Projects", others: "Other Projects", code: "Code", live: "Live" },
+    projects: { eyebrow: "Things I've built", title: "My Projects", others: "Other Projects", code: "Code", live: "Live", close: "Close video" },
     journey: {
       eyebrow: "My journey",
       title: "Experience & Education",
@@ -428,7 +429,7 @@ const fr: Content = {
     about: { eyebrow: "Qui suis-je", title: "À propos de moi" },
     stats: { projects: "Projets", technologies: "Technologies", internships: "Stages" },
     skills: { eyebrow: "Mes outils", title: "Mes compétences" },
-    projects: { eyebrow: "Mes réalisations", title: "Mes projets", others: "Autres projets", code: "Code", live: "Démo" },
+    projects: { eyebrow: "Mes réalisations", title: "Mes projets", others: "Autres projets", code: "Code", live: "Démo", close: "Fermer la vidéo" },
     journey: {
       eyebrow: "Mon parcours",
       title: "Expérience & Formation",

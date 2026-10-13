@@ -1,27 +1,27 @@
+import DemoVideo from "@/components/DemoVideo";
 import type { Project } from "@/data/portfolio";
 
 type ProjectCardProps = {
   project: Project;
-  labels: { code: string; live: string };
+  labels: { code: string; live: string; close: string };
 };
 
-function externalProps(href: string) {
-  return href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {};
-}
+const isUrl = (href?: string): href is string => !!href && /^https?:\/\//.test(href);
 
 export default function ProjectCard({ project, labels }: ProjectCardProps) {
   return (
     <article className="group relative h-full rounded-2xl bg-gradient-to-br from-brand-200 via-brand-100 to-brand-200 p-px transition-all duration-500 hover:-translate-y-2 hover:from-brand-600 hover:via-brand-400 hover:to-brand-500 hover:shadow-2xl hover:shadow-brand-300/60">
-      <div className="flex h-full flex-col rounded-2xl bg-white p-7">
-        <div className="mb-5 flex items-center justify-between">
-          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-accent text-xl text-white shadow-lg shadow-brand-300/60 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
+      <div className="flex h-full flex-col rounded-2xl bg-white p-5 sm:p-7">
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-accent text-lg text-white shadow-lg shadow-brand-300/60 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110 sm:h-12 sm:w-12 sm:text-xl">
             {"</>"}
           </span>
-          <div className="flex gap-2 text-sm font-semibold">
-            {project.github && (
+          <div className="flex flex-wrap justify-end gap-2 text-sm font-semibold">
+            {isUrl(project.github) && (
               <a
                 href={project.github}
-                {...externalProps(project.github)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 px-3.5 py-1.5 text-accent transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-white hover:shadow-md hover:shadow-brand-300/60"
               >
                 <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 fill-current">
@@ -30,24 +30,20 @@ export default function ProjectCard({ project, labels }: ProjectCardProps) {
                 {labels.code}
               </a>
             )}
-            {project.live && (
-              <a
-                href={project.live}
-                {...externalProps(project.live)}
-                className="bg-gradient-accent inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-white shadow-md shadow-brand-300/60 transition-all duration-300 hover:-translate-y-0.5 hover:bg-right hover:shadow-lg hover:shadow-brand-400/60"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute h-full w-full animate-ping rounded-full bg-white/70" />
-                  <span className="relative h-2 w-2 rounded-full bg-white" />
-                </span>
-                {labels.live}
-              </a>
+            {isUrl(project.live) && (
+              <DemoVideo
+                src={project.live}
+                title={project.title}
+                label={labels.live}
+                closeLabel={labels.close}
+                className="bg-gradient-accent inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-1.5 text-white shadow-md shadow-brand-300/60 transition-all duration-300 hover:-translate-y-0.5 hover:bg-right hover:shadow-lg hover:shadow-brand-400/60"
+              />
             )}
           </div>
         </div>
 
         <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-accent">{project.context}</p>
-        <h3 className="mb-3 text-xl font-bold text-foreground transition-colors group-hover:text-accent">
+        <h3 className="mb-3 text-lg font-bold text-foreground transition-colors group-hover:text-accent sm:text-xl">
           {project.title}
         </h3>
         <p className="mb-5 text-muted">{project.description}</p>

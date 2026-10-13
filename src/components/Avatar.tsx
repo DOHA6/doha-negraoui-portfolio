@@ -2,7 +2,7 @@ import Image from "next/image";
 import { shared } from "@/data/portfolio";
 
 export default function Avatar({ size = "lg" }: { size?: "md" | "lg" }) {
-  const dims = size === "lg" ? "h-64 w-64 md:h-80 md:w-80" : "h-56 w-56 md:h-64 md:w-64";
+  const dims = size === "lg" ? "h-56 w-56 sm:h-64 sm:w-64 lg:h-80 lg:w-80" : "h-48 w-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64";
   const initials = shared.name
     .split(" ")
     .map((part) => part[0])

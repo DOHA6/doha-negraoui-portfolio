@@ -57,6 +57,10 @@
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(24px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
   @keyframes blink {
     50% { opacity: 0; }
   }
@@ -69,6 +73,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
