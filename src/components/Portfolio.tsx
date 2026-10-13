@@ -5,6 +5,7 @@ import Timeline from "@/components/Timeline";
 import Reveal from "@/components/Reveal";
 import Typewriter from "@/components/Typewriter";
 import Avatar from "@/components/Avatar";
+import Expandable from "@/components/Expandable";
 import { content, langPaths, shared, type Lang } from "@/data/portfolio";
 
 const skillIconPaths = [
@@ -227,18 +228,19 @@ export default function Portfolio({ lang }: { lang: Lang }) {
             ))}
           </div>
           {others.length > 0 && (
-            <>
-              <Reveal>
-                <h3 className="mb-8 mt-16 text-center text-2xl font-bold text-foreground">{ui.projects.others}</h3>
-              </Reveal>
-              <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+            <Expandable
+              showLabel={`${ui.projects.showMore} (${others.length})`}
+              hideLabel={ui.projects.showLess}
+            >
+              <h3 className="mb-8 mt-14 text-center text-2xl font-bold text-foreground">{ui.projects.others}</h3>
+              <div className={`grid gap-6 md:gap-8 ${others.length === 1 ? "mx-auto max-w-xl" : "md:grid-cols-2"}`}>
                 {others.map((project, i) => (
                   <Reveal key={project.title} delay={i * 120} className="h-full">
                     <ProjectCard project={project} labels={ui.projects} />
                   </Reveal>
                 ))}
               </div>
-            </>
+            </Expandable>
           )}
         </Section>
 

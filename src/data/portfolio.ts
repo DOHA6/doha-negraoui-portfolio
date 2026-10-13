@@ -23,6 +23,8 @@ export type Project = {
   stack: string[];
   github?: string;
   live?: string;
+  // Plays the demo video without sound (visitors can still unmute it from the player controls).
+  muted?: boolean;
   featured?: boolean;
 };
 
@@ -63,7 +65,16 @@ export type Content = {
     about: { eyebrow: string; title: string };
     stats: { projects: string; technologies: string; internships: string };
     skills: { eyebrow: string; title: string };
-    projects: { eyebrow: string; title: string; others: string; code: string; live: string; close: string };
+    projects: {
+      eyebrow: string;
+      title: string;
+      others: string;
+      showMore: string;
+      showLess: string;
+      code: string;
+      live: string;
+      close: string;
+    };
     journey: { eyebrow: string; title: string; experience: string; education: string; certifications: string; activities: string };
     contact: { eyebrow: string; title: string; heading: string; body: string; email: string; cv: string };
     footer: string;
@@ -81,7 +92,7 @@ const tools = {
 // `github` → Code button (opens the repo). `live` → Live button (plays the demo video in a pop-up).
 // Omit a field, or leave it as "#", to hide that button.
 const projectLinks = {
-  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791926224/screen-recording-2026-07-02-224708_sw8bIZI7.mp4" },
+  tealhub: { live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791926224/screen-recording-2026-07-02-224708_sw8bIZI7.mp4", muted: true },
   newsletter: { github: "https://github.com/DOHA6/newsletter.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791898805/Vite_React_-_Personal_-_Microsoft_Edge_2025-08-24_13-06-55.mp4" },
   nova: { github: "https://github.com/m-elhamlaoui/development-platform-nova-pioneers.git", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791897146/Kids_Of_Space_-_Google_Chrome_2025-05-27_12-15-15.mp4" },
   urbanflow: { github: "https://github.com/DOHA6", live: "https://res.cloudinary.com/yjfaji5h/video/upload/v1791904197/SOA.mp4" },
@@ -252,7 +263,7 @@ const en: Content = {
     about: { eyebrow: "Get to know me", title: "About Me" },
     stats: { projects: "Projects", technologies: "Technologies", internships: "Internships" },
     skills: { eyebrow: "What I work with", title: "My Skills" },
-    projects: { eyebrow: "Things I've built", title: "My Projects", others: "Other Projects", code: "Code", live: "Live", close: "Close video" },
+    projects: { eyebrow: "Things I've built", title: "My Projects", others: "Other Projects", showMore: "View other projects", showLess: "Show fewer projects", code: "Code", live: "Live", close: "Close video" },
     journey: {
       eyebrow: "My journey",
       title: "Experience & Education",
@@ -429,7 +440,7 @@ const fr: Content = {
     about: { eyebrow: "Qui suis-je", title: "À propos de moi" },
     stats: { projects: "Projets", technologies: "Technologies", internships: "Stages" },
     skills: { eyebrow: "Mes outils", title: "Mes compétences" },
-    projects: { eyebrow: "Mes réalisations", title: "Mes projets", others: "Autres projets", code: "Code", live: "Démo", close: "Fermer la vidéo" },
+    projects: { eyebrow: "Mes réalisations", title: "Mes projets", others: "Autres projets", showMore: "Voir les autres projets", showLess: "Voir moins de projets", code: "Code", live: "Démo", close: "Fermer la vidéo" },
     journey: {
       eyebrow: "Mon parcours",
       title: "Expérience & Formation",

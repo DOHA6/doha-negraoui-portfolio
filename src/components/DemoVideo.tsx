@@ -5,13 +5,14 @@ import ReactPlayer from "react-player";
 
 type DemoVideoProps = {
   src: string;
+  muted?: boolean;
   title: string;
   label: string;
   closeLabel: string;
   className?: string;
 };
 
-export default function DemoVideo({ src, title, label, closeLabel, className = "" }: DemoVideoProps) {
+export default function DemoVideo({ src, muted = false, title, label, closeLabel, className = "" }: DemoVideoProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -67,6 +68,7 @@ export default function DemoVideo({ src, title, label, closeLabel, className = "
             <div className="aspect-video max-h-[75vh] w-full bg-black">
               <ReactPlayer
                 src={src}
+                muted={muted}
                 playing
                 controls
                 playsInline

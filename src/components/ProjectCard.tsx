@@ -33,6 +33,7 @@ export default function ProjectCard({ project, labels }: ProjectCardProps) {
             {isUrl(project.live) && (
               <DemoVideo
                 src={project.live}
+                muted={project.muted}
                 title={project.title}
                 label={labels.live}
                 closeLabel={labels.close}
